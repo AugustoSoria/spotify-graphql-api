@@ -1,13 +1,15 @@
 import { ApolloServer } from "apollo-server";
-import typeDefs from "./typeDefs.js";
-import resolvers from "./resolvers.js";
+import { application } from './application.js'
 import axios from "axios";
 
 process.loadEnvFile()
 
+const executor = application.createApolloExecutor()
+const schema = application.schema
+
 const server = new ApolloServer({ 
-  typeDefs, 
-  resolvers, 
+  schema,
+  executor,
   introspection: true,
   context: async () => {
     const spotifyApi = axios.create({
