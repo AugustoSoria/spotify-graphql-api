@@ -1,3 +1,4 @@
+import { ApolloError } from 'apollo-server';
 import { createModule, gql } from 'graphql-modules'
 
 export const trackModule = createModule({
@@ -24,9 +25,26 @@ export const trackModule = createModule({
         type: String
         uri: String
         is_local: Boolean
+      }
+
+      type Query {
+        getTracksByPlaylist(id: ID, offset: Int, limit: Int): PaginatedItems
       }`
   ],
   resolvers: {
-    Query: {}
+    Query: {
+      getTracksByPlaylist: async (_, { id, offset, limit }, { spotifyApi }) => {
+        try {
+          const response = await spotifyApi.get(`playlists/${id}/tracks`, {
+            params: { offset, limit }
+          });
+          return response.data;
+        } catch (error) {
+          throw new ApolloError('Failed to get tracks', error.response.status, {
+            originalError: error
+          });
+        }
+      },
+    }
   }
 })

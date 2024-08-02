@@ -21,7 +21,6 @@ export const playlistsModule = createModule({
           const response = await spotifyApi.get(`/browse/categories/${id}/playlists`, {
             params: { offset, limit }
           });
-          console.log(response.data)
           return response.data;
         } catch (error) {
           throw new ApolloError('Failed to get playlists', error.response.status, {

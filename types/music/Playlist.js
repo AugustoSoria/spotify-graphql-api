@@ -14,7 +14,10 @@ export const playlistModule = createModule({
         snapshot_id: String
         type: String
         uri: String
+        owner: Owner
+        tracks: PaginatedItems
         images: [Image]
+        followers: Followers
         external_urls: ExternalUrls
       }`
   ],
@@ -22,9 +25,3 @@ export const playlistModule = createModule({
     Query: {}
   }
 })
-
-// I don't undestand this types
-/**
-  tracks: Tracks
-  owner: Owner
-  followers: Followers */
