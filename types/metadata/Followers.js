@@ -5,16 +5,8 @@ export const followersModule = createModule({
   typeDefs: [
     gql`
       type Followers {
-        external_urls: ExternalUrls
-        followers: Followers
-        genres: [String]
         href: String
-        id: ID
-        images: [Image]
-        name: String
-        popularity: Int
-        type: String
-        uri: String
+        total: Int
       }`
   ],
   resolvers: {

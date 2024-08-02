@@ -5,12 +5,12 @@ export const paginatedResponseModule = createModule({
   typeDefs: [
     gql`
       interface PaginatedResponse {
-        href: String!
-        limit: Int!
+        href: String
+        limit: Int
         next: String
-        offset: Int!
+        offset: Int
         previous: String
-        total: Int!
+        total: Int
       }`
   ],
   resolvers: {
