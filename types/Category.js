@@ -7,12 +7,9 @@ export const categoryModule = createModule({
     gql`
       type Category {
         href: String
-        limit: Int
-        next: String
-        offset: Int
-        previous: String
-        total: Int
-        items: [Items]
+        id: String
+        name: String
+        icons: [Icons]
       }
 
       type Query {
@@ -28,7 +25,7 @@ export const categoryModule = createModule({
         });
         return response.data.categories;
       } catch (error) {
-        throw new ApolloError('Failed to get artist', error.response.status, {
+        throw new ApolloError('Failed to get category', error.response.status, {
           originalError: error
         });
       }
