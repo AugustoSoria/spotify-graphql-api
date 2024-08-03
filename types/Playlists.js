@@ -16,7 +16,7 @@ export const playlistsModule = createModule({
   ],
   resolvers: {
     Query: {
-      getPlaylistsByCategory: async (_, { id, offset, limit }, { spotifyApi }) => {
+      getPlaylistsByCategory: async (_, { id }, { spotifyApi, offset, limit }) => {
         try {
           const response = await spotifyApi.get(`/browse/categories/${id}/playlists`, {
             params: { offset, limit }

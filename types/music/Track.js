@@ -33,7 +33,7 @@ export const trackModule = createModule({
   ],
   resolvers: {
     Query: {
-      getTracksByPlaylist: async (_, { id, offset, limit }, { spotifyApi }) => {
+      getTracksByPlaylist: async (_, { id }, { spotifyApi, offset, limit }) => {
         try {
           const response = await spotifyApi.get(`playlists/${id}/tracks`, {
             params: { offset, limit }

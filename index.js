@@ -11,7 +11,7 @@ const server = new ApolloServer({
   schema,
   executor,
   introspection: true,
-  context: async () => {
+  context: async ({ req }) => {
     const spotifyApi = axios.create({
       baseURL: 'https://api.spotify.com/v1',
       headers: {
@@ -19,7 +19,10 @@ const server = new ApolloServer({
       }
     });
 
-    return { spotifyApi };
+    const offset = req.query.offset || 0;
+    const limit = req.query.limit || 15; 
+
+    return { spotifyApi, offset, limit };
   }
 });
 

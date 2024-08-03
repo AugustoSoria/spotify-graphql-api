@@ -18,7 +18,7 @@ export const categoryModule = createModule({
   ],
   resolvers: {
     Query: {
-     getCategories: async (_, { offset, limit }, { spotifyApi }) => {
+     getCategories: async (_, {}, { spotifyApi, offset, limit }) => {
       try {
         const response = await spotifyApi.get('/browse/categories', {
           params: { offset, limit, locale: "es_ARG" }
